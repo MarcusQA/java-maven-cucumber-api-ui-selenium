@@ -1,4 +1,4 @@
-package stepdefinitions.api;
+package steps.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +6,7 @@ import helpers.HttpResponses;
 import helpers.ScenarioContext;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import steps.BaseStep;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,9 +14,7 @@ import java.net.HttpURLConnection;
 import static helpers.HttpMethods.makeGetCall;
 
 
-public class ApiStepDefinitions {
-    private ScenarioContext scenarioContext;
-
+public class ApiSteps extends BaseStep {
     @When("I request a list of cat breeds")
     public void i_request_a_list_of_cat_breeds() {
         try {
