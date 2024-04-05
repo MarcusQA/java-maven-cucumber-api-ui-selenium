@@ -1,8 +1,7 @@
 package steps.ui;
 
-import io.cucumber.java.Scenario;
-import org.openqa.selenium.WebDriver;
 import io.cucumber.java.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
@@ -23,6 +22,14 @@ public class UiHooks {
     @Before("@UITest")
     public void beforeScenario (Scenario scenario) {
         driver.manage().deleteAllCookies();
+    }
+
+    @AfterStep("@UITest")
+    public static void tearDown(Scenario scenario) {
+        if(scenario.isFailed()) {
+            byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "Failure screenshot: " + scenario.getName());
+        }
     }
 
     @After("@UITest")
