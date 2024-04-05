@@ -34,7 +34,6 @@ public class GoogleSearchPage extends BasePage {
                 return true;
             }
         }
-        System.out.println("Search results do not contain " + searchString);
         return false;
     }
 }

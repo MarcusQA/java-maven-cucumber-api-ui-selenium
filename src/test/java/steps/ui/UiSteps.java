@@ -18,6 +18,6 @@ public class UiSteps extends BaseUiStep {
     public void i_see_in_the_results(String searchResult) {
         GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
         // Example assertion
-        Assert.assertEquals(true, googleSearchPage.pageContains(searchResult));
+        Assert.assertTrue("Search results do not contain " + searchResult, googleSearchPage.pageContains(searchResult));
     }
 }
