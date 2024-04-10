@@ -1,4 +1,4 @@
-package steps.ui;
+package ui.steps;
 
 import io.cucumber.java.*;
 import org.openqa.selenium.*;
@@ -13,27 +13,31 @@ public class UiHooks {
         return driver;
     }
 
-    @Before("@UITest")
-    public void setUp() {
+    @BeforeAll()
+    public static void setUp() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Before("@UITest")
+    @Before()
     public void beforeScenario (Scenario scenario) {
         driver.manage().deleteAllCookies();
     }
 
-    @AfterStep("@UITest")
-    public static void tearDown(Scenario scenario) {
+    @AfterStep()
+    public static void tearDown(Scenario scenario) throws InterruptedException {
         if(scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure screenshot: " + scenario.getName());
+            scenario.attach(screenshot, "image/png", scenario.getName() + ": page where failure occurred");
+
+            driver.navigate().back();
+            byte[] previousScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(previousScreenshot, "image/png", scenario.getName() + ": page before failure");
         }
     }
 
-    @After("@UITest")
-    public void tearDown() {
+    @AfterAll()
+    public static void tearDown() {
         if (driver != null) {
             driver.quit();
         }

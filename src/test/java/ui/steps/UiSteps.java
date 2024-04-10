@@ -1,11 +1,11 @@
-package steps.ui;
+package ui.steps;
 
 import io.cucumber.java.en.*;
 
 import org.junit.Assert;
-import pages.GoogleSearchPage;
+import ui.pages.GoogleSearchPage;
 
-public class UiSteps extends BaseUiStep {
+public class UiSteps extends BaseUiSteps {
     @When("I search for {string}")
     public void i_search_for(String searchTerm) {
         GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);

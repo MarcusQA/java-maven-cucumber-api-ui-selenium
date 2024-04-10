@@ -1,4 +1,4 @@
-package helpers;
+package api.helpers;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
