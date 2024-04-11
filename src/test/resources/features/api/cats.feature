@@ -1,3 +1,4 @@
+@APITest
 Feature: Get information on cats
 
   Scenario: Get cat breeds

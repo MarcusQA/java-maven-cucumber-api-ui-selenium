@@ -14,18 +14,18 @@ public class UiHooks {
     }
 
     @BeforeAll()
-    public static void setUp() {
+    public static void beforeAllScenarios() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Before()
-    public void beforeScenario (Scenario scenario) {
+    @Before("@UITest")
+    public void beforeEachScenario () {
         driver.manage().deleteAllCookies();
     }
 
-    @AfterStep()
-    public static void tearDown(Scenario scenario) throws InterruptedException {
+    @AfterStep("@UITest")
+    public static void afterEachStep(Scenario scenario) throws InterruptedException {
         if(scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName() + ": page where failure occurred");
@@ -37,7 +37,7 @@ public class UiHooks {
     }
 
     @AfterAll()
-    public static void tearDown() {
+    public static void afterAllScenarios() {
         if (driver != null) {
             driver.quit();
         }
