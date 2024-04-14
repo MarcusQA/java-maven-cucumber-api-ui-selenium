@@ -25,6 +25,7 @@ public class UiHooks {
     @AfterStep("@UITest")
     public static void afterEachUIStep(Scenario scenario) throws InterruptedException {
         if(scenario.isFailed()) {
+            driver.manage().window().maximize();
             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName() + ": page where failure occurred");
 
