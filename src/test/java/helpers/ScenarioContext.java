@@ -17,8 +17,4 @@ public class ScenarioContext {
     public Object getContext(String key) {
         return contextMap.get(key);
     }
-
-    public boolean isContains(String key) {
-        return contextMap.containsKey(key);
-    }
 }

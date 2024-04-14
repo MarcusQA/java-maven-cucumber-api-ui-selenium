@@ -1,4 +1,4 @@
-package ui.steps;
+package ui.hooks;
 
 import io.cucumber.java.*;
 import org.openqa.selenium.*;
@@ -13,19 +13,17 @@ public class UiHooks {
         return driver;
     }
 
-    @BeforeAll()
-    public static void beforeAllScenarios() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
-
     @Before("@UITest")
-    public void beforeEachScenario () {
+    public void beforeEachUIScenario () {
+        if (driver == null) {
+            driver = new ChromeDriver(); // It's possible to pass in a different browser driver (e.g. for Firefox, Chrome headless) as a parameter when calling a shell script
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        }
         driver.manage().deleteAllCookies();
     }
 
     @AfterStep("@UITest")
-    public static void afterEachStep(Scenario scenario) throws InterruptedException {
+    public static void afterEachUIStep(Scenario scenario) throws InterruptedException {
         if(scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName() + ": page where failure occurred");
