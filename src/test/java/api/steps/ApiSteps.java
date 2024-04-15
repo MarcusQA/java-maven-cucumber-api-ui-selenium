@@ -1,12 +1,13 @@
 package api.steps;
 
+import api.helpers.HttpResponses;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import api.helpers.HttpResponses;
-import helpers.ScenarioContext;
-import io.cucumber.java.en.*;
-import org.junit.Assert;
 import helpers.BaseSteps;
+import helpers.ScenarioContext;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

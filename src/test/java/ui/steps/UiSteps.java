@@ -1,8 +1,9 @@
 package ui.steps;
 
-import io.cucumber.java.en.*;
-
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
+import ui.pages.GoogleResultsPage;
 import ui.pages.GoogleSearchPage;
 
 public class UiSteps extends BaseUiSteps {
@@ -16,8 +17,8 @@ public class UiSteps extends BaseUiSteps {
 
     @Then("I see {string} in the results")
     public void i_see_in_the_results(String searchResult) {
-        GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
+        GoogleResultsPage googleResultsPage = new GoogleResultsPage(driver);
         // Example assertion
-        Assert.assertTrue("Search results do not contain " + searchResult, googleSearchPage.pageContains(searchResult));
+        Assert.assertTrue("Search results do not contain " + searchResult, googleResultsPage.pageContains(searchResult));
     }
 }

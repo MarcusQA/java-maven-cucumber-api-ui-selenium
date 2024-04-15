@@ -11,8 +11,7 @@ public class HttpMethods {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             return connection;
-        }
-        catch  (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
