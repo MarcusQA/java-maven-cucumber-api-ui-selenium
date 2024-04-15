@@ -1,4 +1,4 @@
-package ui.hooks;
+package ui.steps;
 
 import io.cucumber.java.*;
 import org.openqa.selenium.*;

@@ -27,8 +27,8 @@ public class GoogleSearchPage extends BasePage {
 
     public boolean pageContains(String searchString) {
         List<WebElement> searchResults = driver.findElements(By.cssSelector("h3"));
-        for (WebElement results : searchResults) {
-            if (results.getText().contains(searchString)) {
+        for (WebElement result : searchResults) {
+            if (result.getText().contains(searchString)) {
                 return true;
             }
         }
