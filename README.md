@@ -1,6 +1,6 @@
 # Summary
 
-This is a project to show a basic set of api and UI tests which use Java, Maven, Selenium and Cucumber.
+This is a project to show a basic set of api and UI tests which use Java, Maven, Cucumber and Selenium.
 
 # UI tests
 
